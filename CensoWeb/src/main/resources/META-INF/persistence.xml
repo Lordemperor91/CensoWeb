@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
-    <!-- Define Persistence Unit -->
-    <persistence-unit name="my_persistence_unit">
-        
-    </persistence-unit>
+<persistence version="2.2" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+  <!-- Define Persistence Unit -->
+  <persistence-unit name="my_persistence_unit" transaction-type="JTA">
+    <jta-data-source>jdbc/bdcenso</jta-data-source>
+    <class>co.edu.sena.censoweb.model.Encuestador</class>
+    <class>co.edu.sena.censoweb.model.Suscriptor</class>
+    <class>co.edu.sena.censoweb.model.Servicio</class>
+    <class>co.edu.sena.censoweb.model.UsoComercial</class>
+    <class>co.edu.sena.censoweb.model.Predio</class>
+    <class>co.edu.sena.censoweb.model.Usuario</class>
+    <class>co.edu.sena.censoweb.model.Encuesta</class>
+  </persistence-unit>
 </persistence>
