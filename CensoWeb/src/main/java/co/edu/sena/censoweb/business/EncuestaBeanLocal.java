@@ -1,0 +1,22 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/J2EE/EJB30/SessionLocal.java to edit this template
+ */
+package co.edu.sena.censoweb.business;
+
+import co.edu.sena.censoweb.model.Encuesta;
+import java.util.List;
+import javax.ejb.Local;
+
+/**
+ *
+ * @author Aprendiz
+ */
+@Local
+public interface EncuestaBeanLocal {
+     public void insert(Encuesta encuesta) throws Exception;
+    public void update(Encuesta encuesta) throws Exception;
+    public void delete(Encuesta encuesta) throws Exception;
+    public Encuesta findById(Integer numeroFormulario) throws Exception;    
+    public List<Encuesta> findAll()throws Exception;
+}
