@@ -6,11 +6,13 @@ package co.edu.sena.censoweb.persistense;
 
 import co.edu.sena.censoweb.model.Usuario;
 import java.util.List;
+import javax.ejb.Local;
 
 /**
  *
  * @author Aprendiz
  */
+@Local
 public interface IUsuarioDAO {
      
     public Usuario findById(String nombre) throws Exception;    

@@ -6,6 +6,7 @@ package co.edu.sena.censoweb.persistense;
 
 import co.edu.sena.censoweb.model.Suscriptor;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -14,6 +15,7 @@ import javax.persistence.Query;
  *
  * @author Aprendiz
  */
+@Stateless
 public class SuscriptorDAO implements ISuscriptorDAO {
   @PersistenceContext
     private EntityManager entityManager;

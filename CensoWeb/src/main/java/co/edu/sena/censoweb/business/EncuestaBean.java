@@ -46,6 +46,11 @@ public class EncuestaBean implements EncuestaBeanLocal {
         throw new Exception("el id suscriptor es obligatorio");
      
      }
+    if(encuesta.getFecha()== null)
+     {
+        throw new Exception("la fecha  es obligatoria");
+     
+     }
   }
 
     @Override
@@ -95,7 +100,7 @@ public class EncuestaBean implements EncuestaBeanLocal {
        throw new Exception("no existe encuesta con ese id");
        }
     }
-
+ 
     @Override
     public Encuesta findById(Integer numeroFormulario) throws Exception {
            if(numeroFormulario==0)

@@ -6,11 +6,13 @@ package co.edu.sena.censoweb.persistense;
 
 import co.edu.sena.censoweb.model.Suscriptor;
 import java.util.List;
+import javax.ejb.Local;
 
 /**
  *
  * @author Aprendiz
  */
+@Local
 public interface ISuscriptorDAO {
      public void insert(Suscriptor suscriptor) throws Exception;
     public void update(Suscriptor suscriptor) throws Exception;

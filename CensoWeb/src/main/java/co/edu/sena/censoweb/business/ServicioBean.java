@@ -6,6 +6,7 @@ package co.edu.sena.censoweb.business;
 
 import co.edu.sena.censoweb.model.Servicio;
 import co.edu.sena.censoweb.persistense.IServicioDAO;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -26,28 +27,28 @@ public class ServicioBean implements ServicioBeanLocal {
         throw new Exception("el servicio es nulo");
     
     }
-     if(servicio.getAcueducto()==null)
+     if(servicio.getAcueducto().isEmpty())
      {
         throw new Exception("el acueducto es obligatorio");
      
      }
      
-        if(servicio.getAlcantarillado()== null)
+        if(servicio.getAlcantarillado().isEmpty())
      {
         throw new Exception("el alcatarillado es obligatorio");
      
      }
-      if(servicio.getSerieMedidor()== null)
+      if(servicio.getSerieMedidor().isEmpty())
      {
         throw new Exception("la serie medidor es obligatorio");
      
      }
-    if(servicio.getMarcaMedidor()== null)
+    if(servicio.getMarcaMedidor().isEmpty())
      {
         throw new Exception("el marca medidor es obligatorio");
      
      }
-    if(servicio.getLectura()== null)
+    if(servicio.getLectura()== BigDecimal.ZERO)
      {
         throw new Exception("la lectura es obligatoria");
      

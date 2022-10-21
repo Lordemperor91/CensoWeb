@@ -6,11 +6,13 @@ package co.edu.sena.censoweb.persistense;
 
 import co.edu.sena.censoweb.model.UsoComercial;
 import java.util.List;
+import javax.ejb.Local;
 
 /**
  *
  * @author Aprendiz
  */
+@Local
 public interface IUsoComerciaDAO {
       public void insert(UsoComercial usoComercial) throws Exception;
     public void update(UsoComercial usoComercial) throws Exception;

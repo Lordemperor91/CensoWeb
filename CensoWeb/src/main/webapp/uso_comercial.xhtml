@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Uso comercial</title>
+        <h:outputStylesheet name="css/estilo.css"/>
+    </h:head>
+    <h:body>
+        <div align="center">
+            <h1>espacio para banner</h1>
+        </div>
+        <h:form id="form">
+            <p:panel id="panel" header="Uso comercial">
+                <p:messages id="mensajes" showDetail="true" closable="true"/>
+                <p:panelGrid id="panelgrid" columns="2">
+                    <h:outputText value="id:"/>
+                    <p:inputText id="txtId" />
+                    
+                    <h:outputText value="Descripcion:"/>
+                    <p:inputText id="txtDescripcion" />
+                    <f:facet name="footer">
+                        <div align="center">
+                            <p:commandButton id="btnCrear" style="margin-right: 5px" value="Crear"/>
+                            <p:commandButton id="btnModificar" class="margin-right: 5px" value="Modificar" styleClass="ui-button-secondary"/>
+                            <p:commandButton id="btnEliminar" class="margin-right: 5px" value="Eliminar" styleClass="ui-button-danger"/>
+                            <p:commandButton id="btnLimpiar" value="Limpiar" styleClass="ui-button-success"/>
+                            
+                        </div>
+                        </f:facet>
+                </p:panelGrid>
+                
+                <p>
+                    <p:separator/>                
+                  
+                </p>
+                <p:dataTable id="datatable" value="#(usocomercialView.listUsosComerciales)"
+                             selectionMode="single" paginator="true" rows="5"
+                             emptyMessage="no existen los usos comerciales" var="uso" rowKey="#{uso.idUso}" >
+                    
+                    <p column <headerText="Id" style="text-align: center">
+                       <h:outputText value="#{uso.idUso}"/>
+                    </p:column>
+                    
+                    <p column <headerText="Descripcion" style="text-align: center">
+                       <h:outputText value="#{uso.descripcion}"/>
+                    </p:column>
+                <p:dataTable/>
+            </p:panel>
+            
+        </h:form>
+    </h:body>
+</html>
+

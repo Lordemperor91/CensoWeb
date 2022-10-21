@@ -6,11 +6,13 @@ package co.edu.sena.censoweb.persistense;
 
 import co.edu.sena.censoweb.model.Encuesta;
 import java.util.List;
+import javax.ejb.Local;
 
 /**
  *
  * @author Aprendiz
  */
+@Local
 public interface IEncuestaDAO {
        public void insert(Encuesta encuesta) throws Exception;
     public void update(Encuesta encuesta) throws Exception;

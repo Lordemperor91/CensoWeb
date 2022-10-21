@@ -1,0 +1,15 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 21/10/2022, 11:30:55 AM
+    Author     : Aprendiz
+*/
+
+/* clase para dar espacion a los botones*/
+.margin-button
+{
+   margin-right: 5px; 
+    
+}

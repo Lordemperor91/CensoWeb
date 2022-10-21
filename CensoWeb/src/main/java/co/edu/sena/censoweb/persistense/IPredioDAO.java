@@ -6,11 +6,13 @@ package co.edu.sena.censoweb.persistense;
 
 import co.edu.sena.censoweb.model.Predio;
 import java.util.List;
+import javax.ejb.Local;
 
 /**
  *
  * @author Aprendiz
  */
+@Local
 public interface IPredioDAO {
      public void insert(Predio predio) throws Exception;
     public void update(Predio predio) throws Exception;
