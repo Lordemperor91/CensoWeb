@@ -28,4 +28,9 @@
         <managed-bean-class>co.edu.sena.censoweb.view.UsoComercialView</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>encuestadorView</managed-bean-name>
+        <managed-bean-class>co.edu.sena.censoweb.view.EncuestadorView</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
 </faces-config>

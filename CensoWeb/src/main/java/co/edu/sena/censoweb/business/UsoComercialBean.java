@@ -26,7 +26,7 @@ public class UsoComercialBean implements UsoComercialBeanLocal {
         if(usoComercial.getIdUso() == 0){
             throw new Exception("El Id debe ser obligatorio");
         }
-        if(usoComercial.getDescripcion() == null){
+        if(usoComercial.getDescripcion().isEmpty()){
             throw new Exception("La descripción es obligatoria");
         }
     }

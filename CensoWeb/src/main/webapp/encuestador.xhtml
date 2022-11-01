@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Encuestador</title>
+        <h:outputStylesheet name="css/estilo.css"/>
+    </h:head>
+    <h:body>
+        <div align="center">
+            <p:graphicImage name="img/banner.png"/>
+        </div>
+        <h:form id="form">
+            <p:panel id="panel" header="Encuestador">
+                <p:messages id="mensajes" showDetail="true" closable="true"/>
+                <p:panelGrid id="panelgrid" columns="6">
+                    <h:outputText value="Cedula:"/>
+                    <p:inputText id="txtCedula" binding="#{encuestadorView.txtCedula}"/>
+                    
+                    <h:outputText value="Nombre:"/>
+                    <p:inputText id="txtNombre" binding="#{encuestadorView.txtNombre}"/>
+                    
+                    <h:outputText value="Telefono:"/>
+                    <p:inputText id="txtTelefono" binding="#{encuestadorView.txtTelefono}"/>
+                    
+                    <f:facet name="footer">
+                        <div align="center">
+                            <p:commandButton id="btnCrear" action="#{encuestadorView.insert()}" update="form" binding="#{encuestadorView.btnCrear}" style="margin-right: 5px" value="Crear"/>
+                            <p:commandButton id="btnModificar" action="#{encuestadorView.update}" update="form" binding="#{encuestadorView.btnModificar}" disabled="true" style="margin-right: 5px" value="Modificar" styleClass="ui-button-secondary"/>
+                            <p:commandButton id="btnEliminar" action="#{encuestadorView.delete}" update="form" binding="#{encuestadorView.btnEliminar}" disabled="true" style="margin-right: 5px" value="Eliminar" styleClass="ui-button-danger">
+                                <p:confirm header="confirmacion" message="¿esta seguro de eliminar el registro?" />
+                            </p:commandButton>
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                
+                            <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes"/>
+                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" /> 
+                            </p:confirmDialog>
+  
+                            <p:commandButton id="btnLimpiar" action="#{encuestadorView.clear()}" update="form" value="Limpiar" styleClass="ui-button-success"/>
+                            
+                        </div>
+                        </f:facet>
+                </p:panelGrid>
+                
+                <p>
+                    <p:separator/>                
+                  
+                </p>
+                <p:dataTable id="datatable" value="#{encuestadorView.listEncuestadores}"
+                             selectionMode="single" paginator="true" rows="5"
+                             emptyMessage="no existen encuestadores" var="encuestador" rowKey="#{encuestador.cedula}" >
+                    <p:ajax event="rowSelect" listener="#{encuestadorView.rowSelect}" update=":form:panelgrid" />
+                    
+                    <p:column headerText="Cedula" style="text-align: center;" filterMatchMode="contains" filterBy="#{encuestador.cedula}">
+                       <h:outputText value="#{encuestador.cedula}"/>
+                    </p:column>
+                    
+                    <p:column headerText="Nombre" style="text-align: center" filterMatchMode="contains" filterBy="#{encuestador.nombre}">
+                       <h:outputText value="#{encuestador.nombre}"/>
+                    </p:column>
+                    <p:column headerText="Telefono" style="text-align: center" filterMatchMode="contains" filterBy="#{encuestador.telefono}">
+                       <h:outputText value="#{encuestador.telefono}"/>
+                    </p:column>
+                </p:dataTable>
+            </p:panel>
+            
+        </h:form>
+    </h:body>
+</html>
+

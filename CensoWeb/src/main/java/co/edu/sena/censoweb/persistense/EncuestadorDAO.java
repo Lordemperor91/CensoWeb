@@ -58,7 +58,7 @@ public class EncuestadorDAO implements IEncuestadorDAO {
     @Override
     public List<Encuestador> findAll() throws Exception {
         try {
-            Query query = entityManager.createNamedQuery("Encuesta.findAll");
+            Query query = entityManager.createNamedQuery("Encuestador.findAll");
             
             return query.getResultList();
         } catch (Exception e) {
