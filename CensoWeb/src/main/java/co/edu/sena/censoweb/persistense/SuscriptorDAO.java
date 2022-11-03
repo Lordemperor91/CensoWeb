@@ -58,7 +58,7 @@ public class SuscriptorDAO implements ISuscriptorDAO {
     @Override
     public List<Suscriptor> findAll() throws Exception {
         try {
-            Query query = entityManager.createNamedQuery("Encuesta.findAll");
+            Query query = entityManager.createNamedQuery("Suscriptor.findAll");
             
             return query.getResultList();
         } catch (Exception e) {

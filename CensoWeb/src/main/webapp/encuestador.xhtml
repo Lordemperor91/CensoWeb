@@ -12,6 +12,29 @@
         <div align="center">
             <p:graphicImage name="img/banner.png"/>
         </div>
+        
+        <div align="center">
+            <h:form id="formMenu">
+                <p:menubar>
+                    <p:menuitem value="Inicio" url="index.xhtml" icon="pi pi-home"/>
+                    <p:submenu label="Encuestas">
+                        <p:menuitem value="Encuestadores" url="encuestador.xhtml"/>
+                        <p:menuitem value="Encuestas" url="#"/>
+                    </p:submenu>
+                <p:submenu label="Predios">
+                        <p:menuitem value="Uso Comercial" url="uso_comercial.xhtml"/>
+                        <p:menuitem value="Predios" url="#"/>
+                </p:submenu>
+                <p:submenu label="Suscriptores">
+                        <p:menuitem value="Suscriptores" url="suscriptor.xhtml"/>
+                        <p:menuitem value="Servicios" url="#"/>
+                </p:submenu>
+                <p:menuitem value="Cerrar Sesión" url="#" icon="pi pi-sign-out"/>
+                </p:menubar> 
+            </h:form>
+        </div>
+            <br/>
+        
         <h:form id="form">
             <p:panel id="panel" header="Encuestador">
                 <p:messages id="mensajes" showDetail="true" closable="true"/>

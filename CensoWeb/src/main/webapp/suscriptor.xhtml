@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Suscriptor</title>
+        <h:outputStylesheet name="css/estilo.css"/>
+    </h:head>
+    <h:body>
+        <div align="center">
+            <p:graphicImage name="img/banner.png" class="img-responsive"/>
+        </div>
+        
+        <div align="center">
+            <h:form id="formMenu">
+                <p:menubar>
+                    <p:menuitem value="Inicio" url="index.xhtml" icon="pi pi-home"/>
+                    <p:submenu label="Encuestas">
+                        <p:menuitem value="Encuestadores" url="encuestador.xhtml"/>
+                        <p:menuitem value="Encuestas" url="#"/>
+                    </p:submenu>
+                <p:submenu label="Predios">
+                        <p:menuitem value="Uso Comercial" url="uso_comercial.xhtml"/>
+                        <p:menuitem value="Predios" url="#"/>
+                </p:submenu>
+                <p:submenu label="Suscriptores">
+                        <p:menuitem value="Suscriptores" url="suscriptor.xhtml"/>
+                        <p:menuitem value="Servicios" url="#"/>
+                </p:submenu>
+                <p:menuitem value="Cerrar Sesión" url="#" icon="pi pi-sign-out"/>
+                </p:menubar> 
+            </h:form>
+        </div>
+            <br/>
+        
+        <h:form id="form">
+            <p:panel id="panel" header="Suscriptor">
+                <p:messages id="mensaje" showDetail="true" closable="true"/>
+                <p:panelGrid id="panelgrid" columns="4">
+                    <h:outputText value="Documento:"/>
+                    <p:inputText id="txtDocument" binding="#{suscriptorView.txtDocument}"/>
+                    
+                    <h:outputText value="Tipo de documento:"/>
+                    <p:selectOneMenu id="selectTypeDoc" binding="#{suscriptorView.selectTypeDoc}">
+                        <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                        <f:selectItem itemLabel="CC" itemValue="CC"/>
+                        <f:selectItem itemLabel="CE" itemValue="CE"/>
+                        <f:selectItem itemLabel="PASAPORTE" itemValue="PASAPORTE"/>
+                        <f:selectItem itemLabel="TI" itemValue="TI"/>
+                    </p:selectOneMenu>
+                    
+                    <h:outputText value="Primer Nombre:"/>
+                    <p:inputText id="txtFirstName" binding="#{suscriptorView.txtFirstName}"/>
+                    
+                    <h:outputText value="Segundo Nombre:"/>
+                    <p:inputText id="txtSecondName" binding="#{suscriptorView.txtSecondName}"/>
+                    
+                    <h:outputText value="Primer Apellido:"/>
+                    <p:inputText id="txtLastName" binding="#{suscriptorView.txtLastName}"/>
+                    
+                    <h:outputText value="Segundo Apellido:"/>
+                    <p:inputText id="txtSecondLastName" binding="#{suscriptorView.txtSecondLastName}"/>
+                    
+                    <h:outputText value="Télefono:"/>
+                    <p:inputText id="txtPhone" binding="#{suscriptorView.txtPhone}"/>
+                    
+                    <h:outputText value="Email:"/>
+                    <p:inputText id="txtEmail" binding="#{suscriptorView.txtEmail}"/>
+                    
+                    
+                    <f:facet name="footer">
+                        <div align="center">
+                            <p:commandButton id="btnCrear" action="#{suscriptorView.insert()}" update="form" binding="#{suscriptorView.btnCrear}" style="margin-right: 5px" value="Crear"/>
+                            <p:commandButton id="btnModificar" action="#{suscriptorView.update()}" update="form" binding="#{suscriptorView.btnModificar}" disabled="true" style="margin-right: 5px;" value="Modificar" styleClass="ui-button-secondary"/>
+                            <p:commandButton id="btnEliminar" action="#{suscriptorView.delete()}" update="form" binding="#{suscriptorView.btnEliminar}" disabled="true" style="margin-right: 5px;" value="Eliminar" styleClass="ui-button-danger">
+                                <p:confirm header="Confirmación" message="¿Está seguro de eliminar el registro?"/>
+                            </p:commandButton>
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="si" type="button" styleClass="ui-confirmdialog-yes"/>
+                                <p:commandButton value="no" type="button" styleClass="ui-confirmdialog-no"/>
+                            </p:confirmDialog>
+                            <p:commandButton id="btnLimpiar" action="#{suscriptorView.clear()}" update="form" value="Limpiar" styleClass="ui-button-success"/>
+                        </div>
+                    </f:facet>
+                </p:panelGrid>
+                <p>
+                    <p:separator/>
+                </p>
+                <p:dataTable id="datatable" value="#{suscriptorView.listSuscriptores}" selectionMode="single" paginator="true" rows="5"
+                             emptyMessage="No existe suscriptor" var="suscriptor" rowKey="#{suscriptor.documento}">
+                    <p:ajax event="rowSelect" listener="#{suscriptorView.rowSelect}" update=":form:panelgrid"/>
+                    <p:column headerText="Documento" style="text-align: center;" filterMatchMode="contains" filterBy="#{suscriptor.documento}">
+                        <h:outputText value="#{suscriptor.documento} #{suscriptor.tipoDocumento}"/>
+                    </p:column>
+                    <p:column headerText="Nombre" style="text-align: center;" filterMatchMode="contains" filterBy="#{suscriptor.primerNombre}">
+                        <h:outputText value="#{suscriptor.primerNombre} #{suscriptor.segundoNombre} #{suscriptor.primerApellido} #{suscriptor.segundoApellido}"/>
+                    </p:column>
+                    <p:column headerText="Télefono" style="text-align: center;" filterMatchMode="contains" filterBy="#{suscriptor.telefono}">
+                        <h:outputText value="#{suscriptor.telefono}"/>
+                    </p:column>
+                    <p:column headerText="Email" style="text-align: center;">
+                        <h:outputText value="#{suscriptor.email}"/>
+                    </p:column>
+                    
+                </p:dataTable>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
