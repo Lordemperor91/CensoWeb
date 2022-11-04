@@ -23,7 +23,7 @@
                     </p:submenu>
                 <p:submenu label="Predios">
                         <p:menuitem value="Uso Comercial" url="uso_comercial.xhtml"/>
-                        <p:menuitem value="Predios" url="#"/>
+                        <p:menuitem value="Predios" url="predio.xhtml"/>
                 </p:submenu>
                 <p:submenu label="Suscriptores">
                         <p:menuitem value="Suscriptores" url="suscriptor.xhtml"/>
@@ -105,6 +105,20 @@
                     </p:column>
                     
                 </p:dataTable>
+                <div align="center">
+                    <h:commandLink>
+                        <p:graphicImage name="img/pdf.png"/>
+                        <p:dataExporter type="pdf" target="datatable" fileName="suscriptor"/>
+                    
+                    </h:commandLink>
+                    <h:outputText value="|" />
+                    
+                   <h:commandLink>
+                        <p:graphicImage name="img/xls.png"/>
+                        <p:dataExporter type="xls" target="datatable" fileName="suscriptor"/>                    
+                    </h:commandLink>
+                </div>
+                
             </p:panel>
         </h:form>
     </h:body>

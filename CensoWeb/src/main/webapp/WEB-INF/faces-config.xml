@@ -38,4 +38,14 @@
         <managed-bean-class>co.edu.sena.censoweb.view.SuscriptorView</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>predioView</managed-bean-name>
+        <managed-bean-class>co.edu.sena.censoweb.view.PredioView</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>servicioView</managed-bean-name>
+        <managed-bean-class>co.edu.sena.censoweb.view.ServicioView</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
 </faces-config>

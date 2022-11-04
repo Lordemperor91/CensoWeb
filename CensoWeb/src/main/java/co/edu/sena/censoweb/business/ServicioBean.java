@@ -101,6 +101,7 @@ public class ServicioBean implements ServicioBeanLocal {
        
        throw new Exception("no existe servicio con ese id");
        }
+       servicioDAO.delete(oldServicio);
     }
 
     @Override

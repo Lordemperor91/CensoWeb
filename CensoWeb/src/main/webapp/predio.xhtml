@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Predio</title>
+        <h:outputStylesheet name="css/estilo.css"/>
+    </h:head>
+    <h:body>
+        <div align="center">
+            <p:graphicImage name="Img/banner.png"/>
+        </div>
+        
+        <div align="center">
+            <h:form id="formMenu">
+            <p:menubar>
+                <p:menuitem value="Inicio" url="index.xhmtl" icon="pi pi-home"/>
+                
+                <p:submenu label="Encuestas">
+                    <p:menuitem value="Encuestadores" url="encuestador.xhtml"/>
+                    <p:menuitem value="Encuestas" url="#" />
+                </p:submenu>
+                
+                <p:submenu label="Predios">
+                    <p:menuitem value="Uso comercial" url="uso_comercial.xhtml"/>
+                    <p:menuitem value="Predios" url="predio.xhtml" />
+                </p:submenu>
+                
+                <p:submenu label="Suscriptor">
+                    <p:menuitem value="Suscriptores" url="suscriptor.xhtml"/>
+                    <p:menuitem value="Servicios" url="servicio.xhtml" />
+                </p:submenu>                
+                
+                <p:menuitem value="Cerrar sesión" url="#" icon="pi pi-sign-out"/>
+            </p:menubar>    
+            </h:form>
+        </div>           
+        
+        <h:form id="form">
+            <p:panel id="panel" header="Predio">
+                <p:messages id="mensaje" showDetail="true" closable="true"/>
+                <p:panelGrid id="panelgrid" columns="4">
+                    <h:outputText value="Documento"/>
+                    <p:inputText id="txtId" binding="#{predioView.txtId}"/>
+                    
+                    <h:outputText value="Abreviatura:"/>
+                    <p:selectOneMenu id="selectAbreviatura" binding="#{predioView.selectAbreviatura}">
+                        <f:selectItem itemLabel="SELECCIONE" itemValue="SELECCIONE" />
+                        <f:selectItem itemLabel="Cra" itemValue="Cra" />
+                        <f:selectItem itemLabel="Cll" itemValue="Cll" />
+                        <f:selectItem itemLabel="Av" itemValue="Av" />
+                        <f:selectItem itemLabel="Tr" itemValue="Tr" />
+                    </p:selectOneMenu>
+                    
+                    <h:outputText value="Primer Numero:"/>
+                    <p:inputText id="txtPrimerNumero" binding="#{predioView.txtPrimerNumero}"/>
+                    
+                    <h:outputText value="Segundo Numero:"/>
+                    <p:inputText id="txtSegundoNumero" binding="#{predioView.txtSegundoNumero}"/>
+
+                    <h:outputText value="Tercer Numero:"/>
+                    <p:inputText id="txtTercerNumero" binding="#{predioView.txtTercerNumero}"/>                    
+                    
+                    <h:outputText value="Complemento:"/>
+                    <p:inputText id="txtComplemento" binding="#{predioView.txtComplemento}"/>
+
+                    <h:outputText value="Barrio:"/>
+                    <p:selectOneMenu id="selectBarrio" binding="#{predioView.selectBarrio}">
+                        <f:selectItem itemLabel="SELECCIONE" itemValue="SELECCIONE" />
+                        <f:selectItem itemLabel="Alvernis" itemValue="Alvernis" />
+                        <f:selectItem itemLabel="La Trini" itemValue="La Trini" />
+                        <f:selectItem itemLabel="Huecos de Maracaibo" itemValue="Huecos de Maracaibo" />
+                        <f:selectItem itemLabel="Nuevo princeso" itemValue="Nuevo princeso" />
+                        <f:selectItem itemLabel="Aguamala" itemValue="Aguamala" />
+                    </p:selectOneMenu>
+                    
+                    <h:outputText value="Número de pisos:"/>
+                    <p:inputText id="txtNumeroPisos" binding="#{predioView.txtNumerodePisos}"/>
+                    
+                    <h:outputText value="Numero de Ocupantes:"/>
+                    <p:inputText id="txtNumeroOcupantes" binding="#{predioView.txtNumeroOcupantes}"/>                    
+                    
+                    <h:outputText value="Uso Comercial:"/>
+                    <p:selectOneMenu id="selectUsoComercial" binding="#{predioView.selectUsoComercial}">
+                        <f:selectItem itemLabel="SELECCIONE" itemValue=""/>
+                        <f:selectItems itemValue="#{predioView.itemsUsoComecial}"/>
+                    </p:selectOneMenu>
+                    
+                    <f:facet name="footer">
+                        <div align="center">
+                            <p:commandButton id="btnCrear" action="#{predioView.insert()}" update="form" binding="#{predioView.btnCrear}" style="margin-right: 5px" value="Crear"/>                            
+                            <p:commandButton id="btnModificar" action="#{predioView.update()}" update="form" binding="#{predioView.btnModificar}" disabled="true" style="margin-right: 5px;" value="Modificar" styleClass="ui-button-secondary"/>
+                            <p:commandButton id="btnEliminar" action="#{predioView.delete()}" update="form" binding="#{predioView.btnEliminar}" disabled="true" style="margin-right: 5px;" value="Eliminar" styleClass="ui-button-danger" >
+                                <p:confirm header="Confirmación" message="¿Estas seguro de eliminar el registro?"/>
+                            </p:commandButton>
+                            
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes"/>
+                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no"/>
+                            </p:confirmDialog>
+                            <p:commandButton id="btnLimpiar" action="#{predioView.clear()}" update="form" value="Limpiar" styleClass="ui-button-success"/>
+                        </div>
+                    </f:facet>
+                </p:panelGrid>
+                <p>
+                    <p:separator/>
+                </p>
+                <p:dataTable id="datatable" value="#{predioView.listPredios}" selectionMode="single" paginator="true" rows="5"
+                             emptyMessage="No existe predios" var="predio" rowKey="#{predio.idPredio}">
+                    
+                    <p:ajax event="rowSelect" listener="#{predioView.rowSelect}" update=":form:panelgrid" />
+                    
+                    <p:column headerText="Id" style="text-align: center;">
+                        <h:outputText value="#{predio.idPredio}"/>
+                    </p:column>
+                    <p:column headerText="Dirección" style="text-align: center;">
+                        <h:outputText value="#{predio.abreviatura} #{predio.primerNumero} #{predio.segundoNumero} #{predio.tercerNumero}"/>
+                    </p:column>
+                    <p:column headerText="Barrio" style="text-align: center;">
+                        <h:outputText value="#{predio.barrio}"/>
+                    </p:column>
+                    <p:column headerText="Uso Comercial" style="text-align: center;">
+                        <h:outputText value="#{predio.idUso.descripcion}"/>
+                    </p:column>                    
+                </p:dataTable>
+                
+                <div align="center">
+                    <h:commandLink>
+                        <p:graphicImage name="Img/pdf.png"/>
+                        <p:dataExporter type="pdf" target="datatable" fileName="predios"/>
+                    </h:commandLink>
+                    
+                    <h:outputText value="   |   "/>
+                    
+                    <h:commandLink>
+                        <p:graphicImage name="Img/xls.png"/>
+                        <p:dataExporter type="xls" target="datatable" fileName="predios"/>                        
+                    </h:commandLink>
+                    
+                </div>
+                
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
