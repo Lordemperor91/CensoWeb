@@ -9,6 +9,7 @@ import co.edu.sena.censoweb.persistense.IUsuarioDAO;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -41,5 +42,39 @@ public class UsuarioBean implements UsuarioBeanLocal {
     public List<Usuario> findAll() throws Exception {
         return usuarioDAO.findAll();
     }
+    public String encryptPassword(String password)
+    {
+    
+        String encryptMD5 = DigestUtils.md5Hex(password);
+        return encryptMD5;
+    }
 
+    @Override
+    public void login(Usuario usuario) throws Exception {
+        if(usuario == null)
+        {
+         throw new Exception("el usurio es nulo");
+            
+        }
+        if (usuario.getNombre().isEmpty())
+        {
+        throw new Exception("el nombre de usuario es obligatorio");
+        
+        }
+        //busca si existe un usuario por el nombre
+        Usuario oldUsuario = usuarioDAO.findById(usuario.getNombre());
+        if(oldUsuario==null)
+        {
+        
+            throw new Exception("usuario incorrecto");
+        
+        }
+        //encriptar contraseña digitada en el login para  comparar con la bd
+        
+        String passwordEncrypted =encryptPassword(usuario.getContrasena());
+        if(!oldUsuario.getContrasena().equals(passwordEncrypted));
+        {
+            throw new Exception("usuario incorrecto");
+        }
+    }
 }

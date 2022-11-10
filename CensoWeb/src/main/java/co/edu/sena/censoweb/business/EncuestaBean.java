@@ -98,7 +98,10 @@ public class EncuestaBean implements EncuestaBeanLocal {
        {
        
        throw new Exception("no existe encuesta con ese id");
+       
+       
        }
+       encuestaDAO.delete(oldEncuesta);
     }
  
     @Override

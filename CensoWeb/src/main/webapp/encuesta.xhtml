@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Encuesta</title>
+        <h:outputStylesheet name="css/estilo.css"/>
+        <h:outputScript name="js/calendar_es.js"/>
+    </h:head>
+    <h:body>
+        <div class="ui-fluid" align="center">
+            <div class="ui-grid ui-grid-responsive">
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-12" align="center">
+                    <p:graphicImage name="Img/banner.png" class="img-responsive"/>
+                    </div>
+                </div>
+
+                <div class="ui-grid-row top-buffer">
+                    <div class="ui-grid-col-12" align="center">
+                        <h:form id="formMenu">
+                            <p:menubar>
+                                <p:menuitem value="Inicio" url="index.xhmtl" icon="pi pi-home"/>
+
+                                <p:submenu label="Encuestas">
+                                    <p:menuitem value="Encuestadores" url="encuestador.xhtml"/>
+                                    <p:menuitem value="Encuestas" url="encuesta.xhtml" />
+                                </p:submenu>
+
+                                <p:submenu label="Predios">
+                                    <p:menuitem value="Uso comercial" url="uso_comercial.xhtml"/>
+                                    <p:menuitem value="Predios" url="predio.xhtml" />
+                                </p:submenu>
+
+                                <p:submenu label="Suscriptor">
+                                    <p:menuitem value="Suscriptores" url="suscriptor.xhtml"/>
+                                    <p:menuitem value="Servicios" url="servicio.xhtml" />
+                                </p:submenu>                
+
+                                <p:menuitem value="Cerrar sesión" url="#" icon="pi pi-sign-out"/>
+                            </p:menubar>    
+                        </h:form>  
+                    </div>
+                </div>
+
+                <div class="ui-grid-row top-buffer">
+                    <div class="ui-grid-col-3"></div>
+
+                    <div class="ui-grid-col-6">
+                        <h:form id="form">
+                            <p:panel id="panel" header="Encuesta">
+                                <p:messages id="mensajes" showDetail="true" closable="true"/>
+                                
+                                <div class="ui-grid-row top-buffer">
+                                    <div class="ui-grid-col-3">
+                                        <h:outputText value="Número de Formulario:"/>
+                                    </div>
+                                    <div class="ui-grid-col-3">
+                                        <p:inputText id="txtNumeroFormulario" binding="#{encuestaView.txtNumeroFormulario}"/>
+                                    </div>
+                                    <div class="ui-grid-col-3">
+                                        <h:outputText value="Fecha:"/>
+                                    </div>
+                                    <div class="ui-grid-col-3">
+                                        <p:datePicker id="fecha" value="#{encuestaView.fecha}" yearNavigator="true" locale="es" pattern="yyyy/MM/dd"/>
+                                    </div>
+                                </div>
+                                <div class="ui-grid-row top-buffer">
+                                    <div class="ui-grid-col-3">
+                                        <h:outputText value="Encuestador:"/>
+                                    </div>
+                                    <div class="ui-grid-col-3">
+                                        <p:selectOneMenu id="selectEncuestador" binding="#{encuestaView.selectEncuestador}" 
+                                                         filter="true" filterMatchMode="contains">
+                                            <f:selectItem itemLabel="Seleccione" itemValue="" />
+                                            <f:selectItems value="#{encuestaView.itemsEncuestador}" />
+                                        </p:selectOneMenu>
+                                    </div>
+                                    <div class="ui-grid-col-3">
+                                        <h:outputText value="Predio:"/>
+                                    </div>
+                                    <div class="ui-grid-col-3">
+                                        <p:selectOneMenu id="selectPredio" binding="#{encuestaView.selectPredio}"
+                                                         filter="true" filterMatchMode="contains">
+                                            <f:selectItem itemLabel="Seleccione" itemValue="" />
+                                            <f:selectItems value="#{encuestaView.itemsPredio}" />
+                                        </p:selectOneMenu>
+                                    </div>
+                                </div>
+                                <div class="ui-grid-row top-buffer">
+                                    <div class="ui-grid-col-3">
+                                        <h:outputText value="Servicio:"/>
+                                    </div>
+                                    <div class="ui-grid-col-3">
+                                        <p:selectOneMenu id="selectServicio" binding="#{encuestaView.selectServicio}"
+                                                         filter="true" filterMatchMode="contains">
+                                            <f:selectItem itemLabel="Seleccione" itemValue="" />
+                                            <f:selectItems value="#{encuestaView.itemsServicio}" />
+                                        </p:selectOneMenu>
+                                    </div>
+                                    <div class="ui-grid-col-3">
+                                        <h:outputText value="Suscriptor:"/>
+                                    </div>
+                                    <div class="ui-grid-col-3">
+                                        <p:selectOneMenu id="selectSuscriptor" binding="#{encuestaView.selectSuscriptor}"
+                                                         filter="true" filterMatchMode="contains">
+                                            <f:selectItem itemLabel="Seleccione" itemValue="" />
+                                            <f:selectItems value="#{encuestaView.itemsSuscriptor}" />
+                                        </p:selectOneMenu>
+                                    </div>
+                                </div>
+
+                                <div class="ui-grid-row top-buffer">
+                                    <div class="ui-grid-col-3 right-buffer">
+                                        <p:commandButton id="btnCrear" action="#{encuestaView.insert()}" update="form" binding="#{encuestaView.btnCrear}" value="Crear"/>
+                                    </div>
+                                    <div class="ui-grid-col-3 right-buffer">
+                                        <p:commandButton id="btnModificar" action="#{encuestaView.update()}" update="form" binding="#{encuestaView.btnModificar}" disabled="true" value="Modificar" styleClass="ui-button-secondary"/>
+                                    </div>
+                                    <div class="ui-grid-col-3 right-buffer">
+                                        <p:commandButton id="btnEliminar" action="#{encuestaView.delete()}" update="form" binding="#{encuestaView.btnEliminar}" disabled="true" value="Eliminar" styleClass="ui-button-danger" >
+                                            <p:confirm header="Confirmación" message="¿Estas seguro de eliminar el registro?"/>
+                                        </p:commandButton>
+                                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                            <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes"/>
+                                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no"/>
+                                        </p:confirmDialog>                                        
+                                    </div>
+                                    <div class="ui-grid-col-3">
+                                        <p:commandButton id="btnLimpiar" action="#{encuestaView.clear()}" update="form" value="Limpiar" styleClass="ui-button-success"/>
+                                    </div>                                    
+                                </div>
+
+                            </p:panel>
+
+                            <p>
+                                <p:separator />
+                            </p>
+
+                            <div class="ui-grid-row top-buffer">
+                                <div class="ui-grid-col-12">
+                                    <p:dataTable id="datatable" value="#{encuestaView.listEncuesta}"
+                                                 selectionMode="single" paginator="true" rows="5" 
+                                                 emptyMessage="No existen encuestas" var="encuesta" rowKey="#{encuesta.numeroFormulario}" reflow="true">
+                                        
+                                        <p:ajax event="rowSelect" listener="#{encuestaView.rowSelect}" update=":form:panel" />
+                                        
+                                        <p:column headerText="Numero de Formulario" style="text-align: center">
+                                            <h:outputText value="#{encuesta.numeroFormulario}"/>
+                                        </p:column>
+
+                                        <p:column headerText="Fecha" style="text-align: center">
+                                            <h:outputText value="#{encuesta.fecha}">
+                                            <f:convertDateTime pattern="yyyy/MM/dd"/>
+                                            </h:outputText>
+                                        </p:column>
+                                        
+                                        <p:column headerText="Encuestador" style="text-align: center">
+                                            <h:outputText value="#{encuesta.idEncuestador.nombre}"/>
+                                        </p:column>
+
+                                    </p:dataTable>
+                                </div>
+                            </div>
+
+                        </h:form>
+                    </div>
+
+                    <div class="ui-grid-col-3"></div>
+                </div>
+
+            </div>
+        </div>
+        
+         </h:body>
+</html>

@@ -16,4 +16,6 @@ import javax.ejb.Local;
 public interface UsuarioBeanLocal {
     public Usuario findById (String nombre) throws Exception;
     public List<Usuario> findAll() throws Exception;
+    public void login(Usuario usuario)throws Exception;
+    
 }

@@ -195,7 +195,7 @@ private ServicioBeanLocal servicioBean;
             servicio.setIdServicio(Integer.parseInt(txtIdServicio.getValue().toString()));
                   
             servicioBean.delete(servicio);
-            MessageUtils.addinfoMessage("servicio eliminado exitoxamente");
+            MessageUtils.addinfoMessage("servicio eliminado exitosamente");
             clear();      
             
         } catch (Exception e) {

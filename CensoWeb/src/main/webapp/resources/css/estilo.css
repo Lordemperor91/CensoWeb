@@ -13,3 +13,25 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
    margin-right: 5px; 
     
 }
+.img-responsive{
+    
+    width: 50%;
+    display: block;
+    
+}
+.tof-buffer{
+    
+    margin-top: 10px;
+    
+}
+.right-buffer
+{
+    margin-right: 5px;
+    
+}
+#tiempo
+{
+    
+   color: #ff0000; 
+   font-weight: bold;
+}
