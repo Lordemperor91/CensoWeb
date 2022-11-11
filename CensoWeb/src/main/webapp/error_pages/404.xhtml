@@ -1,23 +1,24 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>sesion caducada</title>
+        <title>404</title>
         <h:outputStylesheet name="css/estilo.css"/>
         <h:outputScript name="js/timer.js" />
     </h:head>
-    <h:body onload="begintimer()">
+    <h:body>
         <div class="ui-fluid" align="center">
             <div class="ui-grid ui-grid-responsive">
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-12" align="center">
-                        <h1>Sesion caducada</h1>
+                        <h1 class="h1-error">Error 404</h1>
                     </div>
                 </div>
                 <div class="ui-grid-row top-buffer">
                     <div class="ui-grid-col-12" align="center">
-                        <h:outputText value="No ha iniciado sesion o esta ya ha caducado!" />
+                       <h2 class="h2-error">Pagina o recurso no encontrado</h2>
                     </div>
                 </div>
                 <p>  </p>
@@ -25,13 +26,15 @@
 
                 <div class="ui-grid-row top-buffer">
                     <div class="ui-grid-col-12" align="center">
-                        <h:graphicImage name="img/sesion_caducada.png" />
+                        <h:graphicImage name="img/warning.png" />
                     </div>
                 </div>
 
                 <div class="ui-grid-row top-buffer">
                     <div class="ui-grid-col-12" align="center">
-                        <h:outputText value="sera redireccionado a la pagina principal en " />
+                        <p>
+                            ir a <p:link href="login.xhtml" value="inicio" escape="false" />
+                        </p>
                         <span id="tiempo"></span>
                     </div>
                 </div>

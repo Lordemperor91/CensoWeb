@@ -58,4 +58,9 @@
         <managed-bean-class>co.edu.sena.censoweb.view.LoginView</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>errorView</managed-bean-name>
+        <managed-bean-class>co.edu.sena.censoweb.view.ErrorView</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 </faces-config>

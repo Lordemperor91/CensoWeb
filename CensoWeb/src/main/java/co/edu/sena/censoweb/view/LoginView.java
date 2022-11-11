@@ -7,6 +7,8 @@ package co.edu.sena.censoweb.view;
 import co.edu.sena.censoweb.business.UsuarioBeanLocal;
 import co.edu.sena.censoweb.model.Usuario;
 import co.edu.sena.censoweb.utils.MessageUtils;
+import java.io.IOException;
+import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -20,7 +22,7 @@ import org.primefaces.component.password.Password;
  *
  * @author Aprendiz
  */
-public class LoginView {
+public class LoginView implements Serializable{
     private InputText txtNombre;
     private Password password;
     private Usuario usuarioLogeado;
@@ -83,12 +85,44 @@ public class LoginView {
             FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
             ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
             String path = ((ServletContext) context.getContext()).getContextPath();
-        } catch (Exception e) {
+            context.redirect(path+ "?faces-redirect=true");
+        } catch (IOException e) {
             MessageUtils.addErrorMessage(e.getMessage());
         }
     
     
     
     }
+    public void validateSession()
+    {
+        try {
+            ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+            usuarioLogeado = (Usuario)context.getSessionMap().get("usuarioLogeado");
+            String url = request.getRequestURL().toString();
+            String path = ((ServletContext) context.getContext()).getContextPath();
+            
+            //si la pagina actual es el login 
+            if(url.endsWith(path + "/" )|| url.endsWith("/login.xhtml"))
+            {
+            
+            if(usuarioLogeado != null)
+            
+            {
+                context.redirect("index.xhtml");
+            
+            
+            }
+            }
+            else if (usuarioLogeado==null)
+            {
+            
+                context.redirect(path + "/unauthorized.xhtml");
+            }
+            
+        } catch (IOException e) {
+            MessageUtils.addErrorMessage(e.getMessage());
+        }
     
+    
+    }
 }

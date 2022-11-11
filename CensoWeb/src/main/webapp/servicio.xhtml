@@ -7,72 +7,77 @@
     <h:head>
         <title>Predio</title>
         <h:outputStylesheet name="css/estilo.css"/>
+         <f:event type="preRenderView" listener="#{loginView.validateSession()}"/>
     </h:head>
     <h:body>
         <div align="center">
             <p:graphicImage name="Img/banner.png"/>
         </div>
-        
+
         <div align="center">
             <h:form id="formMenu">
-            <p:menubar>
-                <p:menuitem value="Inicio" url="index.xhmtl" icon="pi pi-home"/>
-                
-                <p:submenu label="Encuestas">
-                    <p:menuitem value="Encuestadores" url="encuestador.xhtml"/>
-                    <p:menuitem value="Encuestas" url="encuesta.xhtml" />
-                </p:submenu>
-                
-                <p:submenu label="Predios">
-                    <p:menuitem value="Uso comercial" url="uso_comercial.xhtml"/>
-                    <p:menuitem value="Predios" url="predio.xhtml" />
-                </p:submenu>
-                
-                <p:submenu label="Suscriptor">
-                    <p:menuitem value="Suscriptores" url="suscriptor.xhtml"/>
-                    <p:menuitem value="Servicios" url="#" />
-                </p:submenu>                
-                
-                <p:menuitem value="Cerrar sesión" url="#" icon="pi pi-sign-out"/>
-            </p:menubar>    
+                <p:menubar>
+                    <p:menuitem value="Inicio" url="index.xhmtl" icon="pi pi-home"/>
+
+                    <p:submenu label="Encuestas">
+                        <p:menuitem value="Encuestadores" url="encuestador.xhtml"/>
+                        <p:menuitem value="Encuestas" url="encuesta.xhtml" />
+                    </p:submenu>
+
+                    <p:submenu label="Predios">
+                        <p:menuitem value="Uso comercial" url="uso_comercial.xhtml"/>
+                        <p:menuitem value="Predios" url="predio.xhtml" />
+                    </p:submenu>
+
+                    <p:submenu label="Suscriptor">
+                        <p:menuitem value="Suscriptores" url="suscriptor.xhtml"/>
+                        <p:menuitem value="Servicios" url="#" />
+                    </p:submenu>                
+
+                    <p:menuitem value="Cerrar sesión" actionListener="#{loginView.signOut()}" icon="pi pi-sign-out"/>
+                    <f:facet name="options">
+
+                        <h:outputLabel value="Bienvenido #{loginView.usuarioLogeado.nombre}"/>
+                    </f:facet>
+                </p:menubar>    
             </h:form>
         </div>           
-        
+
         <h:form id="form">
             <p:panel id="panel" header="Servicio">
                 <p:messages id="mensaje" showDetail="true" closable="true"/>
                 <p:panelGrid id="panelgrid" columns="4">
                     <h:outputText value="Documento"/>
                     <p:inputText id="txtIdServicio" binding="#{servicioView.txtIdServicio}"/>
-                    
+
                     <h:outputText value="Acueducto:"/>
                     <p:selectOneMenu id="selectAcueducto" binding="#{servicioView.selectAcueducto}">
                         <f:selectItem itemLabel="SELECCIONE" itemValue="SELECCIONE" />
-                            <f:selectItem itemLabel="Si" itemValue="Si" />
+                        <f:selectItem itemLabel="Si" itemValue="Si" />
                         <f:selectItem itemLabel="No" itemValue="No" />                        
                     </p:selectOneMenu>
                     <h:outputText value="Alcantarillado:"/>
                     <p:selectOneMenu id="selectAlcantarillado" binding="#{servicioView.selectAlcantarillado}">
                         <f:selectItem itemLabel="SELECCIONE" itemValue="SELECCIONE" />
-                            <f:selectItem itemLabel="Si" itemValue="Si" />
+                        <f:selectItem itemLabel="Si" itemValue="Si" />
                         <f:selectItem itemLabel="No" itemValue="No" />                        
                     </p:selectOneMenu>
-                     <h:outputText value="Marca Medidor:"/>
+                    <h:outputText value="Marca Medidor:"/>
                     <p:selectOneMenu id="selectMarcaMedidor" binding="#{servicioView.selectMarcaMedidor}">
                         <f:selectItem itemLabel="SELECCIONE" itemValue="SELECCIONE" />
-                            <f:selectItem itemLabel="Medime" itemValue="Medime" />
+                        <f:selectItem itemLabel="Medime" itemValue="Medime" />
                         <f:selectItem itemLabel="Meditales" itemValue="Meditales" />                        
                     </p:selectOneMenu>
-                    
+
                     <h:outputText value="Serie Medidor:"/>
                     <p:inputText id="txtSerieMedidor" binding="#{servicioView.txtSerieMedidor}"/>
-                    
+
                     <h:outputText value="Lectura:"/>
                     <p:inputText id="txtLectura" binding="#{servicioView.txtLectura}"/>                   
 
-                  
-                    
-             
+
+
+
                     <f:facet name="footer">
                         <div align="center">
                             <p:commandButton id="btnCrear" action="#{servicioView.insert()}" update="form" binding="#{servicioView.btnCrear}" style="margin-right: 5px" value="Crear"/>                            
@@ -80,7 +85,7 @@
                             <p:commandButton id="btnEliminar" action="#{servicioView.delete()}" update="form" binding="#{servicioView.btnEliminar}" disabled="true" style="margin-right: 5px;" value="Eliminar" styleClass="ui-button-danger" >
                                 <p:confirm header="Confirmación" message="¿Estas seguro de eliminar el registro?"/>
                             </p:commandButton>
-                            
+
                             <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
                                 <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes"/>
                                 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no"/>
@@ -94,9 +99,9 @@
                 </p>
                 <p:dataTable id="datatable" value="#{servicioView.listServicios}" selectionMode="single" paginator="true" rows="5"
                              emptyMessage="No existe servicios" var="servicio" rowKey="#{servicio.idServicio}">
-                    
+
                     <p:ajax event="rowSelect" listener="#{servicioView.rowSelect}" update=":form:panelgrid" />
-                    
+
                     <p:column headerText="Id" style="text-align: center;">
                         <h:outputText value="#{servicio.idServicio}"/>
                     </p:column>
@@ -116,22 +121,22 @@
                         <h:outputText value="#{servicio.lectura}"/>
                     </p:column> 
                 </p:dataTable>
-                
+
                 <div align="center">
                     <h:commandLink>
                         <p:graphicImage name="Img/pdf.png"/>
                         <p:dataExporter type="pdf" target="datatable" fileName="servicios"/>
                     </h:commandLink>
-                    
+
                     <h:outputText value="   |   "/>
-                    
+
                     <h:commandLink>
                         <p:graphicImage name="Img/xls.png"/>
                         <p:dataExporter type="xls" target="datatable" fileName="servicios"/>                        
                     </h:commandLink>
-                    
+
                 </div>
-                
+
             </p:panel>
         </h:form>
     </h:body>

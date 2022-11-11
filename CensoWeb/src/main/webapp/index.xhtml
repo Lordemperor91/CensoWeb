@@ -2,15 +2,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Uso Comercial</title>
+        <f:event type="preRenderView" listener="#{loginView.validateSession()}"/>
     </h:head>
     <h:body>
         <div align="center">
             <p:graphicImage name="img/banner.png" class="img-responsive"/>
         </div>
-        
+
         <div align="center">
             <h:form id="formMenu">
                 <p:menubar>
@@ -19,19 +21,23 @@
                         <p:menuitem value="Encuestadores" url="encuestador.xhtml"/>
                         <p:menuitem value="Encuestas" url="encuesta.xhtml"/>
                     </p:submenu>
-                <p:submenu label="Predios">
+                    <p:submenu label="Predios">
                         <p:menuitem value="Uso Comercial" url="uso_comercial.xhtml"/>
                         <p:menuitem value="Predios" url="predio.xhtml"/>
-                </p:submenu>
-                <p:submenu label="Suscriptores">
+                    </p:submenu>
+                    <p:submenu label="Suscriptores">
                         <p:menuitem value="Suscriptores" url="suscriptor.xhtml"/>
                         <p:menuitem value="Servicios" url="servicio.xhtml"/>
-                </p:submenu>
-                <p:menuitem value="Cerrar Sesión" url="#" icon="pi pi-sign-out"/>
+                    </p:submenu>
+                    <p:menuitem value="Cerrar sesión" actionListener="#{loginView.signOut()}" icon="pi pi-sign-out"/>
+                    <f:facet name="options">
+
+                        <h:outputLabel value="Bienvenido #{loginView.usuarioLogeado.nombre}"/>
+                    </f:facet>
                 </p:menubar> 
             </h:form>
         </div>
-            <br/>
+        <br/>
         <div align="center">
             <p:graphicImage name="img/principal.png" class="img-responsive"/>
         </div>

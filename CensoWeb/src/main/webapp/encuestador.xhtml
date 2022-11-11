@@ -7,6 +7,7 @@
     <h:head>
         <title>Encuestador</title>
         <h:outputStylesheet name="css/estilo.css"/>
+         <f:event type="preRenderView" listener="#(loginView.validateSession())"/>
     </h:head>
     <h:body>
         <div align="center">
@@ -29,7 +30,11 @@
                         <p:menuitem value="Suscriptores" url="suscriptor.xhtml"/>
                         <p:menuitem value="Servicios" url="servicio.xhtml"/>
                 </p:submenu>
-                <p:menuitem value="Cerrar Sesión" url="#" icon="pi pi-sign-out"/>
+                <p:menuitem value="Cerrar Sesión" url=actionListener="#(loginView.signOut())" icon="pi pi-sign-out"/>
+                <f:facet name="options">
+                                    
+                                    <h:outputLabel value="Bienvenido #(loginView.usuarioLogeado.nombre)"/>
+                                </f:facet>
                 </p:menubar> 
             </h:form>
         </div>

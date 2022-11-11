@@ -7,12 +7,13 @@
     <h:head>
         <title>Suscriptor</title>
         <h:outputStylesheet name="css/estilo.css"/>
+         <f:event type="preRenderView" listener="#{loginView.validateSession()}"/>
     </h:head>
     <h:body>
         <div align="center">
             <p:graphicImage name="img/banner.png" class="img-responsive"/>
         </div>
-        
+
         <div align="center">
             <h:form id="formMenu">
                 <p:menubar>
@@ -21,27 +22,31 @@
                         <p:menuitem value="Encuestadores" url="encuestador.xhtml"/>
                         <p:menuitem value="Encuestas" url="encuesta.xhtml"/>
                     </p:submenu>
-                <p:submenu label="Predios">
+                    <p:submenu label="Predios">
                         <p:menuitem value="Uso Comercial" url="uso_comercial.xhtml"/>
                         <p:menuitem value="Predios" url="predio.xhtml"/>
-                </p:submenu>
-                <p:submenu label="Suscriptores">
+                    </p:submenu>
+                    <p:submenu label="Suscriptores">
                         <p:menuitem value="Suscriptores" url="suscriptor.xhtml"/>
                         <p:menuitem value="Servicios" url="#"/>
-                </p:submenu>
-                <p:menuitem value="Cerrar Sesión" url="#" icon="pi pi-sign-out"/>
+                    </p:submenu>
+                    <p:menuitem value="Cerrar sesión" actionListener="#{loginView.signOut()}" icon="pi pi-sign-out"/>
+                    <f:facet name="options">
+
+                        <h:outputLabel value="Bienvenido #{loginView.usuarioLogeado.nombre}"/>
+                    </f:facet>
                 </p:menubar> 
             </h:form>
         </div>
-            <br/>
-        
+        <br/>
+
         <h:form id="form">
             <p:panel id="panel" header="Suscriptor">
                 <p:messages id="mensaje" showDetail="true" closable="true"/>
                 <p:panelGrid id="panelgrid" columns="4">
                     <h:outputText value="Documento:"/>
                     <p:inputText id="txtDocument" binding="#{suscriptorView.txtDocument}"/>
-                    
+
                     <h:outputText value="Tipo de documento:"/>
                     <p:selectOneMenu id="selectTypeDoc" binding="#{suscriptorView.selectTypeDoc}">
                         <f:selectItem itemLabel="Seleccione" itemValue=""/>
@@ -50,26 +55,26 @@
                         <f:selectItem itemLabel="PASAPORTE" itemValue="PASAPORTE"/>
                         <f:selectItem itemLabel="TI" itemValue="TI"/>
                     </p:selectOneMenu>
-                    
+
                     <h:outputText value="Primer Nombre:"/>
                     <p:inputText id="txtFirstName" binding="#{suscriptorView.txtFirstName}"/>
-                    
+
                     <h:outputText value="Segundo Nombre:"/>
                     <p:inputText id="txtSecondName" binding="#{suscriptorView.txtSecondName}"/>
-                    
+
                     <h:outputText value="Primer Apellido:"/>
                     <p:inputText id="txtLastName" binding="#{suscriptorView.txtLastName}"/>
-                    
+
                     <h:outputText value="Segundo Apellido:"/>
                     <p:inputText id="txtSecondLastName" binding="#{suscriptorView.txtSecondLastName}"/>
-                    
+
                     <h:outputText value="Télefono:"/>
                     <p:inputText id="txtPhone" binding="#{suscriptorView.txtPhone}"/>
-                    
+
                     <h:outputText value="Email:"/>
                     <p:inputText id="txtEmail" binding="#{suscriptorView.txtEmail}"/>
-                    
-                    
+
+
                     <f:facet name="footer">
                         <div align="center">
                             <p:commandButton id="btnCrear" action="#{suscriptorView.insert()}" update="form" binding="#{suscriptorView.btnCrear}" style="margin-right: 5px" value="Crear"/>
@@ -103,22 +108,22 @@
                     <p:column headerText="Email" style="text-align: center;">
                         <h:outputText value="#{suscriptor.email}"/>
                     </p:column>
-                    
+
                 </p:dataTable>
                 <div align="center">
                     <h:commandLink>
                         <p:graphicImage name="img/pdf.png"/>
                         <p:dataExporter type="pdf" target="datatable" fileName="suscriptor"/>
-                    
+
                     </h:commandLink>
                     <h:outputText value="|" />
-                    
-                   <h:commandLink>
+
+                    <h:commandLink>
                         <p:graphicImage name="img/xls.png"/>
                         <p:dataExporter type="xls" target="datatable" fileName="suscriptor"/>                    
                     </h:commandLink>
                 </div>
-                
+
             </p:panel>
         </h:form>
     </h:body>

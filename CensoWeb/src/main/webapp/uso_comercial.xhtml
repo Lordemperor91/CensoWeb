@@ -7,12 +7,13 @@
     <h:head>
         <title>Uso comercial</title>
         <h:outputStylesheet name="css/estilo.css"/>
+         <f:event type="preRenderView" listener="#{loginView.validateSession()}"/>
     </h:head>
     <h:body>
         <div align="center">
             <p:graphicImage name="img/banner.png"/>
         </div>
-        
+
         <div align="center">
             <h:form id="formMenu">
                 <p:menubar>
@@ -21,27 +22,31 @@
                         <p:menuitem value="Encuestadores" url="encuestador.xhtml"/>
                         <p:menuitem value="Encuestas" url="encuesta.xhtml"/>
                     </p:submenu>
-                <p:submenu label="Predios">
+                    <p:submenu label="Predios">
                         <p:menuitem value="Uso Comercial" url="uso_comercial.xhtml"/>
                         <p:menuitem value="Predios" url="predio.xhtml"/>
-                </p:submenu>
-                <p:submenu label="Suscriptores">
+                    </p:submenu>
+                    <p:submenu label="Suscriptores">
                         <p:menuitem value="Suscriptores" url="suscriptor.xhtml"/>
                         <p:menuitem value="Servicios" url="servicio.xhtml"/>
-                </p:submenu>
-                <p:menuitem value="Cerrar Sesión" url="#" icon="pi pi-sign-out"/>
+                    </p:submenu>
+                    <p:menuitem value="Cerrar sesión" actionListener="#{loginView.signOut()}" icon="pi pi-sign-out"/>
+                    <f:facet name="options">
+
+                        <h:outputLabel value="Bienvenido #{loginView.usuarioLogeado.nombre}"/>
+                    </f:facet>
                 </p:menubar> 
             </h:form>
         </div>
-            <br/>
-        
+        <br/>
+
         <h:form id="form">
             <p:panel id="panel" header="Uso comercial">
                 <p:messages id="mensajes" showDetail="true" closable="true"/>
                 <p:panelGrid id="panelgrid" columns="2">
                     <h:outputText value="id:"/>
                     <p:inputText id="txtId" binding="#{usoComercialView.txtId}"/>
-                    
+
                     <h:outputText value="Descripcion:"/>
                     <p:inputText id="txtDescripcion" binding="#{usoComercialView.txtDescripcion}"/>
                     <f:facet name="footer">
@@ -52,36 +57,36 @@
                                 <p:confirm header="confirmacion" message="¿esta seguro de eliminar el registro?" />
                             </p:commandButton>
                             <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                                
-                            <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes"/>
-                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" /> 
+
+                                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes"/>
+                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" /> 
                             </p:confirmDialog>
-  
+
                             <p:commandButton id="btnLimpiar" action="#{usoComercialView.clear()}" update="form" value="Limpiar" styleClass="ui-button-success"/>
-                            
+
                         </div>
-                        </f:facet>
+                    </f:facet>
                 </p:panelGrid>
-                
+
                 <p>
                     <p:separator/>                
-                  
+
                 </p>
                 <p:dataTable id="datatable" value="#{usoComercialView.listUsosComerciales}"
                              selectionMode="single" paginator="true" rows="5"
                              emptyMessage="no existen los usos comerciales" var="uso" rowKey="#{uso.idUso}" >
                     <p:ajax event="rowSelect" listener="#{usoComercialView.rowSelect}" update=":form:panelgrid" />
-                    
+
                     <p:column headerText="Id" style="text-align: center;">
-                       <h:outputText value="#{uso.idUso}"/>
+                        <h:outputText value="#{uso.idUso}"/>
                     </p:column>
-                    
+
                     <p:column headerText="Descripcion" style="text-align: center">
-                       <h:outputText value="#{uso.descripcion}"/>
+                        <h:outputText value="#{uso.descripcion}"/>
                     </p:column>
                 </p:dataTable>
             </p:panel>
-            
+
         </h:form>
     </h:body>
 </html>

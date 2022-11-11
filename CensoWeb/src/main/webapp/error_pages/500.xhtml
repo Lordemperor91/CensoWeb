@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>500</title>
+       
+    </h:head>
+    <h:body>
+        <div class="ui-fluid" align="center">
+            <div class="ui-grid ui-grid-responsive">
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-12" align="center">
+                        <h1 class="h1-error">Error 500</h1>
+                    </div>
+                </div>
+                <div class="ui-grid-row top-buffer">
+                    <div class="ui-grid-col-12" align="center">
+                       <h2 class="h2-error">Error inesperado del servidor ha ocurrido</h2>
+                    </div>
+                </div>
+                <p>  </p>
+
+
+                <div class="ui-grid-row top-buffer">
+                    <div class="ui-grid-col-12" align="center">
+                        <h:graphicImage name="img/error.png" />
+                    </div>
+                </div>
+
+                <div class="ui-grid-row top-buffer">
+                    <div class="ui-grid-col-12" align="center">
+                        <p>
+                            ir a <p:link href="login.xhtml" value="inicio" escape="false" />
+                        </p>
+                        <span id="tiempo"></span>
+                    </div>
+                </div>
+                <div class="ui-grid-row top-buffer">
+                    <div class="ui-grid-col-12" align="center">
+                        <p:panel header="Error">
+                            <p><span class="item_error">User agent</span>#{header['user-agent']}</p>
+                            <p><span class="item_error">Request-URI:</span>#{requestScope['javax.servlet.error.request_uri']}</p>
+                            <p><span class="item_error">Ajax request</span>#{facesContext.partialViewContext.ajaxRequest ? 'yes' : 'no'}</p>
+                            <p><span class="item_error">Codigo de estado</span>#{requestScope['javax.servlet.error.status_code']}</p>
+                            <p><span class="item_error">Tipo de excepcion</span>#{requestScope['javax.servlet.error.exception_type']}</p>
+                            <p><span class="item_error">Mensaje</span>#{requestScope['javax.servlet.error.message']}</p>
+                            <p:panel header="Detalles">
+                                <pre>
+                                    #{errorView.printStackTrace(requestScope['javax.servelet.error.exception'])}
+
+                                
+                                </pre>
+                            </p:panel>
+                        </p:panel>
+            </div>
+        </div>
+
+
+    </h:body>
+</html>
+

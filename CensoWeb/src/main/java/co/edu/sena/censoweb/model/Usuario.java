@@ -31,12 +31,10 @@ public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    
+    @Basic(optional = false)    
     @Column(name = "nombre",nullable=false, length = 50)
     private String nombre;
-    @Basic(optional = false)
-    
+    @Basic(optional = false)    
     @Column(name = "contrasena",nullable=false, length = 100)
     private String contrasena;
 

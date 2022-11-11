@@ -26,7 +26,7 @@ public class UsuarioBean implements UsuarioBeanLocal {
         if(usuario.getNombre() == null){
             throw new Exception("El usuario es obligatorio");
         }
-        if(usuario.getContrasena() == null){
+        if(usuario.getContrasena().isEmpty()){
             throw new Exception("La contraseña es obligatoria");
         }
     } 
@@ -63,7 +63,7 @@ public class UsuarioBean implements UsuarioBeanLocal {
         }
         //busca si existe un usuario por el nombre
         Usuario oldUsuario = usuarioDAO.findById(usuario.getNombre());
-        if(oldUsuario==null)
+        if(oldUsuario == null)
         {
         
             throw new Exception("usuario incorrecto");
@@ -71,8 +71,8 @@ public class UsuarioBean implements UsuarioBeanLocal {
         }
         //encriptar contraseña digitada en el login para  comparar con la bd
         
-        String passwordEncrypted =encryptPassword(usuario.getContrasena());
-        if(!oldUsuario.getContrasena().equals(passwordEncrypted));
+        String passwordEncrypted = encryptPassword(usuario.getContrasena());
+        if(!oldUsuario.getContrasena().equals(passwordEncrypted))
         {
             throw new Exception("usuario incorrecto");
         }

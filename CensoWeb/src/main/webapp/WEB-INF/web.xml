@@ -37,4 +37,28 @@
         <extension>eot</extension>
         <mime-type>font/eot</mime-type>        
     </mime-mapping>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/error_pages/403.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error_pages/404.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error_pages/500.xhtml</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/error_pages/500.xhtml</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.faces.application.ViewExpiredException</exception-type>
+        <location>/unauthorized.xhtml</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.persistense.OptimisticLockException</exception-type>
+        <location>/error_pages/optimistic.xhtml</location>
+    </error-page>
 </web-app>

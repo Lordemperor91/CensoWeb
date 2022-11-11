@@ -8,6 +8,7 @@
         <title>Encuesta</title>
         <h:outputStylesheet name="css/estilo.css"/>
         <h:outputScript name="js/calendar_es.js"/>
+        <f:event type="preRenderView" listener="#{loginView.validateSession()}"/>
     </h:head>
     <h:body>
         <div class="ui-fluid" align="center">
@@ -39,7 +40,11 @@
                                     <p:menuitem value="Servicios" url="servicio.xhtml" />
                                 </p:submenu>                
 
-                                <p:menuitem value="Cerrar sesión" url="#" icon="pi pi-sign-out"/>
+                                <p:menuitem value="Cerrar sesión" actionListener="#{loginView.signOut()}" icon="pi pi-sign-out"/>
+                                <f:facet name="options">
+                                    
+                                    <h:outputLabel value="Bienvenido #{loginView.usuarioLogeado.nombre}"/>
+                                </f:facet>
                             </p:menubar>    
                         </h:form>  
                     </div>

@@ -35,3 +35,31 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
    color: #ff0000; 
    font-weight: bold;
 }
+.h1 error
+{
+   color:#cc0000;
+   font-weight: bold;
+   font-family: Verdana;
+   text-align:center;
+   font-size: 18px;
+    
+    
+}
+
+.h2 error
+{
+   color:#cc0000;
+   font-weight: bold;
+   font-family: Verdana;
+   text-align:center;
+   font-size: 14px;
+    
+    
+}
+
+.item_error
+{
+   font-weight: bold;
+   font-size: 12px;
+    
+}
